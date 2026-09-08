@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player - Ebonies</title>
+    <title>Music Player</title>
     <style>
         * {
             margin: 0;
@@ -67,41 +67,6 @@
             font-size: 16px;
             color: #666;
             margin-bottom: 20px;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
         }
 
         .progress-container {
@@ -183,14 +148,14 @@
     </style>
 </head>
 <body>
-    <!-- Player 1: Mutima Gwange -->
+    <!-- Player 1: New Track 1 -->
     <div class="player-container">
         <div class="player-header">
             <div class="album-art">
-                <img src="https://i.imgur.com/7RxKqZL.jpg" alt="Ebonies Volume 5 Album Cover">
+                <img src="https://i.imgur.com/7RxKqZL.jpg" alt="Album Cover">
             </div>
-            <h1 class="song-title">Mutima Gwange</h1>
-            <p class="artist-name">by Ebonies</p>
+            <h1 class="song-title">Track 1</h1>
+            <p class="artist-name">Music</p>
         </div>
 
         <div class="progress-container">
@@ -203,11 +168,6 @@
             </div>
         </div>
 
-        <div class="controls">
-            <button id="playBtn1">▶ Play</button>
-            <button id="stopBtn1">⏹ Stop</button>
-        </div>
-
         <div class="volume-container">
             <label for="volumeSlider1" style="font-size: 14px; color: #666;">🔊</label>
             <input type="range" id="volumeSlider1" class="volume-slider" min="0" max="100" value="70">
@@ -216,14 +176,14 @@
         <div class="status" id="status1"></div>
     </div>
 
-    <!-- Player 2: New Audio -->
+    <!-- Player 2: New Track 2 -->
     <div class="player-container">
         <div class="player-header">
             <div class="album-art">
-                <img src="https://i.imgur.com/7RxKqZL.jpg" alt="Ebonies Album Cover">
+                <img src="https://i.imgur.com/7RxKqZL.jpg" alt="Album Cover">
             </div>
-            <h1 class="song-title">New Track</h1>
-            <p class="artist-name">by Ebonies</p>
+            <h1 class="song-title">Track 2</h1>
+            <p class="artist-name">Music</p>
         </div>
 
         <div class="progress-container">
@@ -234,11 +194,6 @@
                 <span id="currentTime2">0:00</span>
                 <span id="duration2">0:00</span>
             </div>
-        </div>
-
-        <div class="controls">
-            <button id="playBtn2">▶ Play</button>
-            <button id="stopBtn2">⏹ Stop</button>
         </div>
 
         <div class="volume-container">
@@ -253,10 +208,8 @@
     <audio id="audioPlayer2"></audio>
 
     <script>
-        // Player 1: Mutima Gwange
+        // Player 1
         const audioPlayer1 = document.getElementById('audioPlayer1');
-        const playBtn1 = document.getElementById('playBtn1');
-        const stopBtn1 = document.getElementById('stopBtn1');
         const progressBar1 = document.getElementById('progressBar1');
         const progress1 = document.getElementById('progress1');
         const currentTimeDisplay1 = document.getElementById('currentTime1');
@@ -264,28 +217,7 @@
         const volumeSlider1 = document.getElementById('volumeSlider1');
         const statusDisplay1 = document.getElementById('status1');
 
-        audioPlayer1.src = 'https://stream.botnex.site/watch/246206/Mutima+Gwange%28M4A_128K%29.m4a?hash=AgADVB';
-
-        playBtn1.addEventListener('click', () => {
-            if (audioPlayer1.paused) {
-                audioPlayer1.play();
-                playBtn1.textContent = '⏸ Pause';
-                statusDisplay1.textContent = '🎵 Now playing...';
-            } else {
-                audioPlayer1.pause();
-                playBtn1.textContent = '▶ Play';
-                statusDisplay1.textContent = '⏸ Paused';
-            }
-        });
-
-        stopBtn1.addEventListener('click', () => {
-            audioPlayer1.pause();
-            audioPlayer1.currentTime = 0;
-            playBtn1.textContent = '▶ Play';
-            progress1.style.width = '0%';
-            currentTimeDisplay1.textContent = '0:00';
-            statusDisplay1.textContent = '⏹ Stopped';
-        });
+        audioPlayer1.src = 'https://storage.kagujjemovies.com/stream/1445?hash=2327f8';
 
         audioPlayer1.addEventListener('timeupdate', () => {
             const percentage = (audioPlayer1.currentTime / audioPlayer1.duration) * 100;
@@ -307,17 +239,22 @@
             audioPlayer1.volume = e.target.value / 100;
         });
 
+        audioPlayer1.addEventListener('play', () => {
+            statusDisplay1.textContent = '🎵 Now playing...';
+        });
+
+        audioPlayer1.addEventListener('pause', () => {
+            statusDisplay1.textContent = '⏸ Paused';
+        });
+
         audioPlayer1.addEventListener('ended', () => {
-            playBtn1.textContent = '▶ Play';
             statusDisplay1.textContent = '✓ Completed';
         });
 
         audioPlayer1.volume = 0.7;
 
-        // Player 2: New Audio
+        // Player 2
         const audioPlayer2 = document.getElementById('audioPlayer2');
-        const playBtn2 = document.getElementById('playBtn2');
-        const stopBtn2 = document.getElementById('stopBtn2');
         const progressBar2 = document.getElementById('progressBar2');
         const progress2 = document.getElementById('progress2');
         const currentTimeDisplay2 = document.getElementById('currentTime2');
@@ -326,27 +263,6 @@
         const statusDisplay2 = document.getElementById('status2');
 
         audioPlayer2.src = 'https://storage.kagujjemovies.com/stream/1441?hash=b107c4';
-
-        playBtn2.addEventListener('click', () => {
-            if (audioPlayer2.paused) {
-                audioPlayer2.play();
-                playBtn2.textContent = '⏸ Pause';
-                statusDisplay2.textContent = '🎵 Now playing...';
-            } else {
-                audioPlayer2.pause();
-                playBtn2.textContent = '▶ Play';
-                statusDisplay2.textContent = '⏸ Paused';
-            }
-        });
-
-        stopBtn2.addEventListener('click', () => {
-            audioPlayer2.pause();
-            audioPlayer2.currentTime = 0;
-            playBtn2.textContent = '▶ Play';
-            progress2.style.width = '0%';
-            currentTimeDisplay2.textContent = '0:00';
-            statusDisplay2.textContent = '⏹ Stopped';
-        });
 
         audioPlayer2.addEventListener('timeupdate', () => {
             const percentage = (audioPlayer2.currentTime / audioPlayer2.duration) * 100;
@@ -368,8 +284,15 @@
             audioPlayer2.volume = e.target.value / 100;
         });
 
+        audioPlayer2.addEventListener('play', () => {
+            statusDisplay2.textContent = '🎵 Now playing...';
+        });
+
+        audioPlayer2.addEventListener('pause', () => {
+            statusDisplay2.textContent = '⏸ Paused';
+        });
+
         audioPlayer2.addEventListener('ended', () => {
-            playBtn2.textContent = '▶ Play';
             statusDisplay2.textContent = '✓ Completed';
         });
 

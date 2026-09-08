@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mutima Gwange - Ebonies</title>
+    <title>Music Player - Ebonies</title>
     <style>
         * {
             margin: 0;
@@ -19,6 +19,8 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .player-container {
@@ -181,6 +183,7 @@
     </style>
 </head>
 <body>
+    <!-- Player 1: Mutima Gwange -->
     <div class="player-container">
         <div class="player-header">
             <div class="album-art">
@@ -191,96 +194,186 @@
         </div>
 
         <div class="progress-container">
-            <div class="progress-bar" id="progressBar">
-                <div class="progress" id="progress"></div>
+            <div class="progress-bar" id="progressBar1">
+                <div class="progress" id="progress1"></div>
             </div>
             <div class="time-display">
-                <span id="currentTime">0:00</span>
-                <span id="duration">0:00</span>
+                <span id="currentTime1">0:00</span>
+                <span id="duration1">0:00</span>
             </div>
         </div>
 
         <div class="controls">
-            <button id="playBtn">▶ Play</button>
-            <button id="stopBtn">⏹ Stop</button>
+            <button id="playBtn1">▶ Play</button>
+            <button id="stopBtn1">⏹ Stop</button>
         </div>
 
         <div class="volume-container">
-            <label for="volumeSlider" style="font-size: 14px; color: #666;">🔊</label>
-            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
+            <label for="volumeSlider1" style="font-size: 14px; color: #666;">🔊</label>
+            <input type="range" id="volumeSlider1" class="volume-slider" min="0" max="100" value="70">
         </div>
 
-        <div class="status" id="status"></div>
+        <div class="status" id="status1"></div>
     </div>
 
-    <audio id="audioPlayer"></audio>
+    <!-- Player 2: Ssanyu Lyolubeerera -->
+    <div class="player-container">
+        <div class="player-header">
+            <div class="album-art">
+                <img src="https://i.imgur.com/7RxKqZL.jpg" alt="Ebonies Album Cover">
+            </div>
+            <h1 class="song-title">Ssanyu Lyolubeerera</h1>
+            <p class="artist-name">by Ebonies</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar2">
+                <div class="progress" id="progress2"></div>
+            </div>
+            <div class="time-display">
+                <span id="currentTime2">0:00</span>
+                <span id="duration2">0:00</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="playBtn2">▶ Play</button>
+            <button id="stopBtn2">⏹ Stop</button>
+        </div>
+
+        <div class="volume-container">
+            <label for="volumeSlider2" style="font-size: 14px; color: #666;">🔊</label>
+            <input type="range" id="volumeSlider2" class="volume-slider" min="0" max="100" value="70">
+        </div>
+
+        <div class="status" id="status2"></div>
+    </div>
+
+    <audio id="audioPlayer1"></audio>
+    <audio id="audioPlayer2"></audio>
 
     <script>
-        const audioPlayer = document.getElementById('audioPlayer');
-        const playBtn = document.getElementById('playBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const progressBar = document.getElementById('progressBar');
-        const progress = document.getElementById('progress');
-        const currentTimeDisplay = document.getElementById('currentTime');
-        const durationDisplay = document.getElementById('duration');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const statusDisplay = document.getElementById('status');
+        // Player 1: Mutima Gwange
+        const audioPlayer1 = document.getElementById('audioPlayer1');
+        const playBtn1 = document.getElementById('playBtn1');
+        const stopBtn1 = document.getElementById('stopBtn1');
+        const progressBar1 = document.getElementById('progressBar1');
+        const progress1 = document.getElementById('progress1');
+        const currentTimeDisplay1 = document.getElementById('currentTime1');
+        const durationDisplay1 = document.getElementById('duration1');
+        const volumeSlider1 = document.getElementById('volumeSlider1');
+        const statusDisplay1 = document.getElementById('status1');
 
-        // Set audio source
-        audioPlayer.src = 'https://stream.botnex.site/watch/246206/Mutima+Gwange%28M4A_128K%29.m4a?hash=AgADVB';
+        audioPlayer1.src = 'https://stream.botnex.site/watch/246206/Mutima+Gwange%28M4A_128K%29.m4a?hash=AgADVB';
 
-        // Play button functionality
-        playBtn.addEventListener('click', () => {
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-                playBtn.textContent = '⏸ Pause';
-                statusDisplay.textContent = '🎵 Now playing...';
+        playBtn1.addEventListener('click', () => {
+            if (audioPlayer1.paused) {
+                audioPlayer1.play();
+                playBtn1.textContent = '⏸ Pause';
+                statusDisplay1.textContent = '🎵 Now playing...';
             } else {
-                audioPlayer.pause();
-                playBtn.textContent = '▶ Play';
-                statusDisplay.textContent = '⏸ Paused';
+                audioPlayer1.pause();
+                playBtn1.textContent = '▶ Play';
+                statusDisplay1.textContent = '⏸ Paused';
             }
         });
 
-        // Stop button functionality
-        stopBtn.addEventListener('click', () => {
-            audioPlayer.pause();
-            audioPlayer.currentTime = 0;
-            playBtn.textContent = '▶ Play';
-            progress.style.width = '0%';
-            currentTimeDisplay.textContent = '0:00';
-            statusDisplay.textContent = '⏹ Stopped';
+        stopBtn1.addEventListener('click', () => {
+            audioPlayer1.pause();
+            audioPlayer1.currentTime = 0;
+            playBtn1.textContent = '▶ Play';
+            progress1.style.width = '0%';
+            currentTimeDisplay1.textContent = '0:00';
+            statusDisplay1.textContent = '⏹ Stopped';
         });
 
-        // Update progress bar
-        audioPlayer.addEventListener('timeupdate', () => {
-            const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-            progress.style.width = percentage + '%';
-            currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+        audioPlayer1.addEventListener('timeupdate', () => {
+            const percentage = (audioPlayer1.currentTime / audioPlayer1.duration) * 100;
+            progress1.style.width = percentage + '%';
+            currentTimeDisplay1.textContent = formatTime(audioPlayer1.currentTime);
         });
 
-        // Set duration
-        audioPlayer.addEventListener('loadedmetadata', () => {
-            durationDisplay.textContent = formatTime(audioPlayer.duration);
+        audioPlayer1.addEventListener('loadedmetadata', () => {
+            durationDisplay1.textContent = formatTime(audioPlayer1.duration);
         });
 
-        // Click on progress bar to seek
-        progressBar.addEventListener('click', (e) => {
-            const rect = progressBar.getBoundingClientRect();
+        progressBar1.addEventListener('click', (e) => {
+            const rect = progressBar1.getBoundingClientRect();
             const percent = (e.clientX - rect.left) / rect.width;
-            audioPlayer.currentTime = percent * audioPlayer.duration;
+            audioPlayer1.currentTime = percent * audioPlayer1.duration;
         });
 
-        // Volume control
-        volumeSlider.addEventListener('input', (e) => {
-            audioPlayer.volume = e.target.value / 100;
+        volumeSlider1.addEventListener('input', (e) => {
+            audioPlayer1.volume = e.target.value / 100;
         });
 
-        // Handle audio end
-        audioPlayer.addEventListener('ended', () => {
-            playBtn.textContent = '▶ Play';
-            statusDisplay.textContent = '✓ Completed';
+        audioPlayer1.addEventListener('ended', () => {
+            playBtn1.textContent = '▶ Play';
+            statusDisplay1.textContent = '✓ Completed';
         });
+
+        audioPlayer1.volume = 0.7;
+
+        // Player 2: Ssanyu Lyolubeerera
+        const audioPlayer2 = document.getElementById('audioPlayer2');
+        const playBtn2 = document.getElementById('playBtn2');
+        const stopBtn2 = document.getElementById('stopBtn2');
+        const progressBar2 = document.getElementById('progressBar2');
+        const progress2 = document.getElementById('progress2');
+        const currentTimeDisplay2 = document.getElementById('currentTime2');
+        const durationDisplay2 = document.getElementById('duration2');
+        const volumeSlider2 = document.getElementById('volumeSlider2');
+        const statusDisplay2 = document.getElementById('status2');
+
+        audioPlayer2.src = 'https://stream.botnex.site/watch/246208/Ssanyu+Ly_olubeerera%28M4A_128K%29.m4a?hash=AgADTh';
+
+        playBtn2.addEventListener('click', () => {
+            if (audioPlayer2.paused) {
+                audioPlayer2.play();
+                playBtn2.textContent = '⏸ Pause';
+                statusDisplay2.textContent = '🎵 Now playing...';
+            } else {
+                audioPlayer2.pause();
+                playBtn2.textContent = '▶ Play';
+                statusDisplay2.textContent = '⏸ Paused';
+            }
+        });
+
+        stopBtn2.addEventListener('click', () => {
+            audioPlayer2.pause();
+            audioPlayer2.currentTime = 0;
+            playBtn2.textContent = '▶ Play';
+            progress2.style.width = '0%';
+            currentTimeDisplay2.textContent = '0:00';
+            statusDisplay2.textContent = '⏹ Stopped';
+        });
+
+        audioPlayer2.addEventListener('timeupdate', () => {
+            const percentage = (audioPlayer2.currentTime / audioPlayer2.duration) * 100;
+            progress2.style.width = percentage + '%';
+            currentTimeDisplay2.textContent = formatTime(audioPlayer2.currentTime);
+        });
+
+        audioPlayer2.addEventListener('loadedmetadata', () => {
+            durationDisplay2.textContent = formatTime(audioPlayer2.duration);
+        });
+
+        progressBar2.addEventListener('click', (e) => {
+            const rect = progressBar2.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audioPlayer2.currentTime = percent * audioPlayer2.duration;
+        });
+
+        volumeSlider2.addEventListener('input', (e) => {
+            audioPlayer2.volume = e.target.value / 100;
+        });
+
+        audioPlayer2.addEventListener('ended', () => {
+            playBtn2.textContent = '▶ Play';
+            statusDisplay2.textContent = '✓ Completed';
+        });
+
+        audioPlayer2.volume = 0.7;
 
         // Format time helper function
         function formatTime(seconds) {
@@ -289,24 +382,6 @@
             const secs = Math.floor(seconds % 60);
             return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }
-
-        // Initialize volume
-        audioPlayer.volume = 0.7;
-
-        // Handle play/pause state
-        audioPlayer.addEventListener('play', () => {
-            playBtn.textContent = '⏸ Pause';
-            statusDisplay.textContent = '🎵 Now playing...';
-        });
-
-        audioPlayer.addEventListener('pause', () => {
-            if (audioPlayer.currentTime === 0) {
-                playBtn.textContent = '▶ Play';
-            } else {
-                playBtn.textContent = '▶ Play';
-                statusDisplay.textContent = '⏸ Paused';
-            }
-        });
     </script>
 </body>
 </html>
